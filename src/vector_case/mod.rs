@@ -6,3 +6,4 @@ pub mod merge_sorted_arrays;
 pub mod max_profit;
 pub mod single_number;
 pub mod majority_element;
+pub mod has_duplicate;
