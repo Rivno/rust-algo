@@ -35,8 +35,6 @@ pub fn is_palindrome(head: Option<Box<ListNode>>) -> bool {
     true
 }
 
-
-
 #[cfg(test)]
 mod tests {
     use super::*;
