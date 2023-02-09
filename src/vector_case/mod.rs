@@ -8,3 +8,6 @@ pub mod single_number;
 pub mod majority_element;
 pub mod has_duplicate;
 pub mod missing_number;
+pub mod move_zeroes;
+pub mod reverse;
+pub mod intersection;

@@ -4,3 +4,4 @@ pub mod pascal_triangle;
 pub mod reverse_bits;
 pub mod hamming_weight;
 pub mod happy_number;
+pub mod power_of_three;
