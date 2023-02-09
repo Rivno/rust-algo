@@ -41,60 +41,40 @@ fn merge_two_lists(list1: Option<Box<ListNode>>, list2: Option<Box<ListNode>>) -
 mod tests {
     use super::*;
 
+    fn get_linked_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
+        let mut head: Option<Box<ListNode>> = None;
+
+        for val in vec.iter().rev() {
+            head = Some(Box::new(ListNode { val: val.clone(), next: head }));
+        }
+
+        head
+    }
+
     #[test]
     fn case1() {
-        let list1 = Some(Box::new(ListNode {
-            val: 1,
-            next: Some(Box::new(ListNode {
-                val: 2,
-                next: Some(Box::new(ListNode::new(4))),
-            })),
-        }));
-
-        let list2 = Some(Box::new(ListNode {
-            val: 1,
-            next: Some(Box::new(ListNode {
-                val: 3,
-                next: Some(Box::new(ListNode::new(4))),
-            })),
-        }));
-
-        let expected = Some(Box::new(ListNode {
-            val: 1,
-            next: Some(Box::new(ListNode {
-                val: 1,
-                next: Some(Box::new(ListNode {
-                    val: 2,
-                    next: Some(Box::new(ListNode {
-                        val: 3,
-                        next: Some(Box::new(ListNode {
-                            val: 4,
-                            next: Some(Box::new(ListNode::new(4))),
-                        })),
-                    })),
-                })),
-            })),
-        }));
-
-        let result = merge_two_lists(list1, list2);
+        let entry1 = get_linked_list(vec![1,2,4]);
+        let entry2 = get_linked_list(vec![1,3,4]);
+        let expected = get_linked_list(vec![1,1,2,3,4,4]);
+        let result = merge_two_lists(entry1, entry2);
         assert_eq!(result, expected);
     }
 
     #[test]
     fn case2() {
-        let list1 = None;
-        let list2 = None;
+        let entry1 = None;
+        let entry2 = None;
         let expected = None;
-        let result = merge_two_lists(list1, list2);
+        let result = merge_two_lists(entry1, entry2);
         assert_eq!(result, expected);
     }
 
     #[test]
     fn case3() {
-        let list1 = None;
-        let list2 = Some(Box::new(ListNode::new(0)));
-        let expected = Some(Box::new(ListNode::new(0)));
-        let result = merge_two_lists(list1, list2);
+        let entry1 = None;
+        let entry2 = get_linked_list(vec![0]);
+        let expected = get_linked_list(vec![0]);
+        let result = merge_two_lists(entry1, entry2);
         assert_eq!(result, expected);
     }
 }

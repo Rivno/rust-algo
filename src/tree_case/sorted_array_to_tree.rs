@@ -20,8 +20,6 @@ impl TreeNode {
 use std::rc::Rc;
 use std::cell::RefCell;
 
-
-
 #[allow(dead_code)]
 pub fn add_node(node: TreeNode) -> Option<Rc<RefCell<TreeNode>>> {
     Some(Rc::new(RefCell::new(node)))
@@ -63,7 +61,6 @@ pub fn sorted_array_to_bst(nums: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
     let left_vec = &nums[0..mid];
     let right_vec = &nums[(mid+1)..nums.len()];
 
-    println!("here => {mid:?} {:?}", nums[mid]);
     add_node(TreeNode {
         val: nums[mid], 
         left: sorted_array_to_bst(left_vec.to_vec()),

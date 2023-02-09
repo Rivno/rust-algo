@@ -39,22 +39,19 @@ pub fn is_palindrome(head: Option<Box<ListNode>>) -> bool {
 mod tests {
     use super::*;
 
-    fn add_node(node: ListNode) -> Option<Box<ListNode>> {
-        Some(Box::new(node))
+    fn get_linked_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
+        let mut head: Option<Box<ListNode>> = None;
+
+        for val in vec.iter().rev() {
+            head = Some(Box::new(ListNode { val: val.clone(), next: head }));
+        }
+
+        head
     }
 
     #[test]
     fn case1() {
-        let entry = add_node(ListNode {
-            val: 1,
-            next:add_node(ListNode {
-                val: 2,
-                next:add_node(ListNode {
-                    val: 2,
-                    next: add_node(ListNode::new(1)),
-                }),
-            }),
-        });
+        let entry = get_linked_list(vec![1,2,2,1]);
         let expected = true;
         let result = is_palindrome(entry);
         assert_eq!(result, expected);
@@ -62,10 +59,7 @@ mod tests {
 
     #[test]
     fn case2() {
-        let entry = add_node(ListNode {
-            val: 1,
-            next: add_node(ListNode::new(2)),
-        });
+        let entry = get_linked_list(vec![1,2]);
         let expected = false;
         let result = is_palindrome(entry);
         assert_eq!(result, expected);
