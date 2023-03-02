@@ -16,7 +16,6 @@ pub fn length_of_longest_substring(s: String) -> i32 {
         let char = chars[index_current];
         if let Some(char_index) = map.get(&char) {
             let res = index_current - index_head;
-            println!("{:?} - {:?} - {:?}", res, index_current, index_head);
             if result < res {
                 result = res;
             }
